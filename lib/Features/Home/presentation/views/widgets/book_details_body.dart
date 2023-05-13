@@ -47,7 +47,9 @@ class BookDetailsSection extends StatelessWidget {
       children: [
         Padding(
           padding: EdgeInsets.symmetric(horizontal: width * 0.2),
-          child: const CustomBookImage(),
+          child: const CustomBookImage(
+              imageUrl:
+                  'http://clipart-library.com/image_gallery2/Apple-IPhone-PNG-Image.png'),
         ),
         const SizedBox(
           height: 43,
