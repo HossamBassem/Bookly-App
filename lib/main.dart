@@ -5,6 +5,7 @@ import 'package:bookly_app/Core/utils/service_locator.dart';
 import 'package:bookly_app/Features/Home/data/model/book_model/repos/home_repo_impl.dart';
 import 'package:bookly_app/Features/Home/presentation/manager/featuredBooks_cubit/featured_books_cubit.dart';
 import 'package:bookly_app/Features/Home/presentation/manager/newset_books_cubit/newset_books_cubit.dart';
+import 'package:bookly_app/Features/Home/presentation/manager/similar_books_cubit/similar_books_cubit.dart';
 import 'package:bookly_app/Features/splash/presentation/views/splash_view.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
