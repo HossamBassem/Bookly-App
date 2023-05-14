@@ -1,10 +1,13 @@
 import 'package:bookly_app/Core/utils/assets.dart';
 import 'package:bookly_app/Core/utils/styles.dart';
 import 'package:bookly_app/Core/widgets/custom_button.dart';
+import 'package:bookly_app/Features/Home/data/model/book_model/book_model.dart';
+import 'package:bookly_app/Features/Home/presentation/views/widgets/book_details_section.dart';
 import 'package:bookly_app/Features/Home/presentation/views/widgets/book_rating.dart';
-import 'package:bookly_app/Features/Home/presentation/views/widgets/box_action.dart';
+import 'package:bookly_app/Features/Home/presentation/views/widgets/books_action.dart';
 import 'package:bookly_app/Features/Home/presentation/views/widgets/custom_book_image_item.dart';
 import 'package:bookly_app/Features/Home/presentation/views/widgets/custombookdetails_appbar.dart';
+import 'package:bookly_app/Features/Home/presentation/views/widgets/similar_books_section.dart';
 import 'package:bookly_app/Features/Home/presentation/views/widgets/similer_books_listview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -12,90 +15,28 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class BookDetailsViewBody extends StatelessWidget {
-  const BookDetailsViewBody({super.key});
+  const BookDetailsViewBody({super.key, required this.bookModel});
+  final BookModel bookModel;
 
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: [
         SliverFillRemaining(
+          hasScrollBody: false,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30),
             child: Column(
-              children: const [
-                CustomBookDetailsAppBar(),
-                BookDetailsSection(),
-                Expanded(child: SizedBox(height: 50)),
-                SimilarBooksSection(),
-                SizedBox(height: 40),
+              children: [
+                const CustomBookDetailsAppBar(),
+                BookDetailsSection(bookModel: bookModel),
+                const Expanded(child: SizedBox(height: 50)),
+                const SimilarBooksSection(),
+                const SizedBox(height: 40),
               ],
             ),
           ),
         )
-      ],
-    );
-  }
-}
-
-class BookDetailsSection extends StatelessWidget {
-  const BookDetailsSection({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    var width = MediaQuery.of(context).size.width;
-    return Column(
-      children: [
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: width * 0.2),
-          child: const CustomBookImage(
-              imageUrl:
-                  'http://clipart-library.com/image_gallery2/Apple-IPhone-PNG-Image.png'),
-        ),
-        const SizedBox(
-          height: 43,
-        ),
-        Text(
-          'The Jungle Book',
-          style: Styles.textStyle30.copyWith(fontWeight: FontWeight.bold),
-        ),
-        const SizedBox(
-          height: 6,
-        ),
-        Opacity(
-          opacity: 0.7,
-          child: Text(
-            'Rudyard Kipling',
-            style: Styles.textStyle18.copyWith(
-                fontStyle: FontStyle.italic, fontWeight: FontWeight.w500),
-          ),
-        ),
-        const SizedBox(height: 18),
-        const BookRating(
-          count: 5,
-          rating: 250,
-          mainAxisAlignment: MainAxisAlignment.center,
-        ),
-        const SizedBox(height: 37),
-        const BoxAction(),
-      ],
-    );
-  }
-}
-
-class SimilarBooksSection extends StatelessWidget {
-  const SimilarBooksSection({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'You can also like',
-          style: Styles.textStyle14.copyWith(fontWeight: FontWeight.w600),
-        ),
-        const SizedBox(height: 16),
-        const SimilarBooksListView(),
       ],
     );
   }
